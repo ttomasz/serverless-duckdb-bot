@@ -1,0 +1,57 @@
+{
+  "name": "serverless-duckdb-bot",
+  "version": "0.1.0",
+  "description": "DuckDB Discord bot on AWS Lambda",
+  "scripts": {
+    "cfn-lint": "cfn-lint .serverless/cloudformation-template-update-stack.json",
+    "package": "sls package",
+    "qa": "npm run package && npm run cfn-lint",
+    "deploy": "sls deploy --aws-profile serverless-duckdb-bot --region us-east-1",
+    "build": "tsc",
+    "sync": "slash-up sync",
+    "sync:dev": "slash-up sync -e development",
+    "lint": "npx eslint --ext .ts .",
+    "lint:fix": "npx eslint --ext .ts . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@types/node": "^16.7.13",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "babel-loader": "^8.1.0",
+    "duckdb": "^0.8.0",
+    "eslint": "^7.15.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "prettier": "^2.2.1",
+    "serverless": "^3.32.2",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-iam-roles-per-function": "next",
+    "serverless-offline": "^12.0.4",
+    "serverless-plugin-typescript": "^2.1.4",
+    "serverless-prune-plugin": "^2.0.2",
+    "slash-up": "^1.1.2",
+    "ts-loader": "^9.4.3",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.12.5",
+    "aws-embedded-metrics": "^4.0.0",
+    "aws-sdk": "2.1083.0",
+    "slash-create": "^5.12.0"
+  }
+}
