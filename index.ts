@@ -62,7 +62,6 @@ creator.on('rawRequest', (request: TransformedRequest) => {
       console.error('Error during lambda invocation: ', err);
       return;
     }
-
   }
 });
 // creator.on('rawInteraction', (request) => console.debug(request));
