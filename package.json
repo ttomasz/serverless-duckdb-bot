@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ttomasz/serverless-duckdb-bot"
   },
-  "author": "",
-  "license": "MIT",
+  "author": "ttomasz",
+  "license": "CC0",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/ttomasz/serverless-duckdb-bot"
   },
-  "homepage": "",
+  "homepage": "https://github.com/ttomasz/serverless-duckdb-bot",
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.6",
