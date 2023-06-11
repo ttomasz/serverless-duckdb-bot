@@ -24,7 +24,7 @@ function respondFunction(interactionID: string, token: string): RespondFunction 
   };
 }
 
-const server = new AWSLambdaServer(module.exports);
+const server = new AWSLambdaServer(module.exports, 'handler');
 creator.withServer(server).registerCommand(DqlCommand);
 
 // creator.on('rawREST', (request) => console.debug(request));

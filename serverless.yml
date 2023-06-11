@@ -2,12 +2,17 @@ service: serverless-duckdb-bot
 useDotenv: true
 frameworkVersion: '3'
 plugins:
+  - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-prune-plugin
-  - serverless-plugin-typescript
   - serverless-dotenv-plugin
-  - serverless-offline
 custom:
+  #Webpack settings
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    includeModules: false # Node modules configuration for packaging
+    packager: 'npm' # Packager that will be used to package your external modules
+  # Prune plugin
   prune:
     automatic: true
     number: 1
@@ -59,10 +64,9 @@ functions:
           path: '/query'
           method: post
   discord-bot:
-    handler: index.interactions
+    handler: index.handler
     memorySize: 128
     timeout: 29
-    runtime: nodejs18.x
     iamRoleStatements:
     # Invoke self (bot)
     - Effect: Allow

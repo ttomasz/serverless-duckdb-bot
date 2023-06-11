@@ -59,7 +59,8 @@ process.on('SIGTERM', async () => {
   process.exit(0);
 });
 
-export const handler = metricScope((metrics: MetricsLogger) => async (event, context) => {
+// todo: figure out types for event and context
+export const handler = metricScope((metrics: MetricsLogger) => async (event: any, context: any) => {
   // Setup logger
   const requestLogger = logger.child({ requestId: context.awsRequestId });
   requestLogger.debug({ event, context });
@@ -68,8 +69,6 @@ export const handler = metricScope((metrics: MetricsLogger) => async (event, con
   metrics.putDimensions({ Service: 'QueryService' });
   metrics.setProperty('RequestId', context.awsRequestId);
 
-  // Parse event body with query
-//  const body = JSON.parse(event.body);
   const sql = event.query;
 
   if (!sql) {
