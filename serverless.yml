@@ -8,8 +8,6 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-offline
 custom:
-  api:
-    version: 'v1'
   prune:
     automatic: true
     number: 1
@@ -26,10 +24,10 @@ provider:
 #    apiKeys:
 #      - DuckDBKey
 functions:
-  discord-bot:
-    handler: index.interactions
-    memorySize: 256
-    timeout: 29
+  duckdb-query:
+    handler: query.handler
+    memorySize: 1024
+    timeout: 28
     # iamRoleStatements:
     #   # Read from input bucket
     #   - Effect: Allow
@@ -55,7 +53,27 @@ functions:
     #       - s3:ListMultipartUploadParts
     #     Resource: 'arn:aws:s3:::YOUR-S3-OUTPUT-BUCKET-NAME/*'
     layers:
-      - 'arn:aws:lambda:${self:provider.region}:041475135427:layer:duckdb-nodejs-x86:3'
+     - 'arn:aws:lambda:${self:provider.region}:041475135427:layer:duckdb-nodejs-x86:3'
+    events:
+      - httpApi:
+          path: '/query'
+          method: post
+  discord-bot:
+    handler: index.interactions
+    memorySize: 128
+    timeout: 29
+    runtime: nodejs18.x
+    iamRoleStatements:
+    # Invoke self (bot)
+    - Effect: Allow
+      Action:
+      - lambda:InvokeFunction
+      Resource: 'arn:aws:lambda:us-east-1:360797132652:function:serverless-duckdb-bot-prd-discord-bot'
+     # Invoke function that runs queries
+    - Effect: Allow
+      Action:
+      - lambda:InvokeFunction
+      Resource: 'arn:aws:lambda:us-east-1:360797132652:function:serverless-duckdb-bot-prd-duckdb-query'
     events:
       - httpApi:
           path: '/event'

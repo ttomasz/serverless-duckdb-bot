@@ -29,6 +29,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.12.7",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "@types/bunyan": "^1.8.8",
     "@types/node": "^16.7.13",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
@@ -52,6 +53,7 @@
     "@babel/runtime": "^7.12.5",
     "aws-embedded-metrics": "^4.0.0",
     "aws-sdk": "2.1083.0",
+    "bunyan": "^1.8.15",
     "slash-create": "^5.12.0"
   }
 }
